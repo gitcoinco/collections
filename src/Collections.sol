@@ -64,11 +64,12 @@ contract Collections {
 
     // todo: add some sort of restrictions to this function
     function featureCollection(bytes32 _key, bool _isFeatured) public {
+        if (userCollections[_key].creatorAddress == address(0)) revert CollectionDoesNotExist();
+
+        Collection memory _collection = userCollections[_key];
+
         if (_isFeatured) {
             // require that the collection exists
-            if (userCollections[_key].creatorAddress == address(0)) revert CollectionDoesNotExist();
-
-            Collection memory _collection = userCollections[_key];
 
             featuredCollections[_key] = _collection;
 
@@ -77,5 +78,7 @@ contract Collections {
 
         // remove from featured
         delete featuredCollections[_key];
+
+        emit CollectionFeatured(_collection.ipfsPointer, _collection.key, true, _collection.creatorAddress);
     }
 }
