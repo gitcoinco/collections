@@ -1,11 +1,9 @@
-# Name 
 
 <p align="center">
-<img src="./images/logo.png" width="200" alt="Name">
+<h1>Collections For Grants Rounds</h1>
 <br/>
 
 
-- [Name](#name)
 - [About](#about)
 - [Getting Started](#getting-started)
   - [Requirements](#requirements)
