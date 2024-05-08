@@ -1,24 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity ^0.8.19;
 
-contract Collections {
+import "./interfaces/ICollection.sol";
+
+contract Collections is ICollections {
     error OnlyCreatorCanCallThisFunction();
     error CollectionDoesNotExist();
-
-    // Index this event
-    event CollectionAdded(string ipfsPointer, bytes32 key, bool featured, address creatorAddress);
-    event CollectionUpdated(string ipfsPointer, bytes32 key, bool featured, address creatorAddress);
-    event UserCollectionAdded(string ipfsPointer, bytes32 key, bool featured, address creatorAddress);
-    event UserCollectionUpdated(string ipfsPointer, bytes32 key, bool featured, address creatorAddress);
-    event CollectionFeatured(string ipfsPointer, bytes32 key, bool featured, address creatorAddress);
-
-    // Collection
-    struct Collection {
-        string ipfsPointer;
-        bytes32 key; // Type of data being published
-        bool featured;
-        address creatorAddress;
-    }
 
     // key => Collection
     mapping(bytes32 => Collection) public userCollections;
